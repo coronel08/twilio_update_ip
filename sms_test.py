@@ -13,7 +13,7 @@ twilio_phone = '+13236224366'
 
 
 def send_text(body='test'):
-    """ 
+    """
     Sends a text message to me, if nothing is passed in function it will send test
     """
     message = client.messages.create(
@@ -25,7 +25,7 @@ def send_text(body='test'):
 
 
 def fetch_messages():
-    """ 
+    """
     Fetches the last 30 text messages, before 2021
     """
     # can add filter like from_= , to= , date_sent=datetime(2021,1,1,0,0,0) , date_sent_after=datetime()
@@ -64,6 +64,13 @@ def add_conversation(conversation_sid):
     print(participant.sid)
 
 
+def chat_in_conversation(conversation_sid):
+    participant = client.conversations \
+        .conversations(conversation_sid) \
+        .participants \
+        .create(identity='testPine')
+    print(participant.sid)
+
 # send_text("This is a test run")
 # fetch_messages()
 
@@ -75,4 +82,5 @@ conversation_sid = 'CHa58ccfd9e9a148cd91b32b2989f97bf9'
 conversation_service = 'ISe762ba9737c643c7993f602847ebe2d6'
 # fetch_conversation(conversation_sid)
 participant_sid = 'MB980856734004444b81b3ea640953d9e4'
-add_conversation(conversation_sid)
+# add_conversation(conversation_sid)
+chat_in_conversation(conversation_sid)
