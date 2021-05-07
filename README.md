@@ -1,7 +1,20 @@
 # twilio_update_ip
 Python Script to update twilio inside, will add twilio script to get text messaging api going as well.
 
+Replace the items in config_sample.py with your information to run the scripts
+```
+twilio_sid = 'XXXXXXXXXXXXX'
+twilio_token = 'XXXXXXXXXXXX'
+TWILIO_NUMBER = "+13236211111"
+PRIVATE_NUMBER = "+13231113118"
+```
+
+
+
 [Messages api](https://www.twilio.com/docs/sms/api/message-resource#create-a-message-resource) show how to create, fetch, delete, or update a message
+
+
+![](media.gif)
 
 ---
 ## Resources for Conversations
@@ -21,10 +34,15 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJT
 
 ---
 ## Creating a phone number proxy
-[Phone number proxy script](https://www.twilio.com/blog/2018/02/phone-number-forward-mask-python-flask.html)
+Resources:
+* [Phone number proxy script](https://www.twilio.com/blog/2018/02/phone-number-forward-mask-python-flask.html)
+* [Github phone number proxy](https://github.com/npentrel/twilio-ghost)
 
-[Github phone number proxy](https://github.com/npentrel/twilio-ghost)
+Script is named ----
 
+---
+### Notes
+Notes
 
 
 ---
@@ -32,6 +50,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJT
 * Setup cron job to run update ip script
 * [x] Setup Twilio CLI on server to process text messages and conversations on server. [Twilio CLI](https://www.twilio.com/docs/twilio-cli/quickstart)
   * [x] Create a WhatsApp business account for 1(323)622-4366
-    * [autopilot whatsapp](https://www.twilio.com/docs/autopilot/channels/whatsapp) and [WhatsApp Senders](https://www.twilio.com/console/sms/whatsapp/senders) and [autopilot all](https://www.twilio.com/docs/autopilot/channels) 
+    * [ ] [autopilot whatsapp](https://www.twilio.com/docs/autopilot/channels/whatsapp) and [WhatsApp Senders](https://www.twilio.com/console/sms/whatsapp/senders) and [autopilot all](https://www.twilio.com/docs/autopilot/channels) 
 * [x] Create a FB business manager account [FB Business](https://business.facebook.com/overview)
-  * [WhatsApp API](https://www.twilio.com/docs/whatsapp/api)
+  * [ ] Learn and use WHatsApp Business and learn [WhatsApp API](https://www.twilio.com/docs/whatsapp/api)
+* [ ] Update file names, clean up folder, update README.

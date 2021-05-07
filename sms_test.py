@@ -8,8 +8,8 @@ load_dotenv(find_dotenv())
 account_sid = os.environ.get("twilio_sid")
 auth_token = os.environ.get("twilio_token")
 client = Client(account_sid, auth_token)
-fidel_phone = '+13236333898'
-twilio_phone = '+13236224366'
+PRIVATE_NUMBER = os.environ.get("fidel_phone")
+TWILIO_NUMBER = os.environ.get("twilio_phone")
 
 
 def send_text(body='test'):
@@ -17,8 +17,8 @@ def send_text(body='test'):
     Sends a text message to me, if nothing is passed in function it will send test
     """
     message = client.messages.create(
-        to=fidel_phone,
-        from_=twilio_phone,
+        to=PRIVATE_NUMBER,
+        from_=TWILIO_NUMBER,
         body=body
     )
     print(message.sid, message.to, message.body)
@@ -58,8 +58,8 @@ def add_conversation(conversation_sid):
         .conversations(conversation_sid) \
         .participants \
         .create(
-            messaging_binding_address=fidel_phone,
-            messaging_binding_proxy_address=twilio_phone
+            messaging_binding_address=PRIVATE_NUMBER,
+            messaging_binding_proxy_address=TWILIO_NUMBER
         )
     print(participant.sid)
 
