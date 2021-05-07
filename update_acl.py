@@ -7,9 +7,8 @@ from twilio.rest import Client
 # https://www.twilio.com/blog/build-voip-system-twilio-3cx-python
 
 
-# Might change to dotenv
-ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
-ACCOUNT_TOKEN = os.getenv('TWILIO_ACCOUNT_TOKEN')
+# Environment Variables, figure out ACL_NAME
+from config import twilio_sid, twilio_token, PRIVATE_NUMBER, TWILIO_NUMBER
 ACL_NAME = os.getenv('TWILIO_ACL_NAME')
 
 
@@ -54,7 +53,7 @@ def main():
     if not ip_needs_update():
         return
 
-    client = Client(ACCOUNT_SID, ACCOUNT_TOKEN)
+    client = Client(twilio_sid, twilio_token)
     auth_acl = find_acl(client)
     update_ip(auth_acl)
 
