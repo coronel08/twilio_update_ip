@@ -94,6 +94,7 @@ Resources:
 ## Todo
 There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
 * [ ] Add in browser calling [FLask Javascript in Browser Calling](https://www.twilio.com/blog/make-receive-phone-calls-browser-twilio-programmable-voice-python-javascript)
+* [ ] Build a cahtbot with Whatsapp[Flask chatbot ](https://www.twilio.com/blog/build-a-whatsapp-chatbot-with-python-flask-and-twilio)
 * [ ] Upload to AWS
 * [ ] Add video with text chat [React Video Chat Twilio](https://www.twilio.com/blog/open-source-video-chat-app-reactjs-conversations-api)
 * [ ] Code out a only during work hours kind of thing 

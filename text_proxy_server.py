@@ -1,4 +1,5 @@
 import re
+import requests
 from flask import Flask, request
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
@@ -71,6 +72,30 @@ def message():
     print(t.transcription_text)
     return str(sid)
 
+
+# Route and functions for a chatbot
+@app.route('/bot', methods=['POST'])
+def bot():
+    """ A chatbot feature that reads an incoming msg and finds a keyword, if keyword cat or quote, then it replies back"""
+    incoming_msg = request.values.get('Body', '').lower()
+    resp = MessagingResponse()
+    msg = resp.message()
+    responded = False
+    if 'quote' in incoming_msg:
+        r = requests.get('https://api.quotable.io/random')
+        if r.status_code == 200:
+            data = r.json()
+            quote = f'{data["content"]} ({data["author"]})'
+        else:
+            quote = ("Error loading API")
+        msg.body(quote)
+        responded = True
+    if 'cat' in incoming_msg:
+        msg.media('https://cataas.com/cat')
+        responded = True
+    elif not responded:
+        msg.body('Send a quotes or cats in body, sorry')
+    return str(resp)
 
 if __name__ == '__main__':
     app.run()
