@@ -1,7 +1,40 @@
-# twilio_update_ip
-Python Script to update twilio inside, will add twilio script to get text messaging api going as well.
+# Twilio Scripts
+A couple of python scripts to interact with Twilio. This was devised so that I dont have to get business calls clogging my personal phone. The text_proxy_server.py script will run a server that will receive text on a twilio phone number. Inbound text will be routed to a personal phone number and your reply back will be routed to look as if came from the twilio number. <br><br>
 
-Replace the items in config_sample.py with your information to run the scripts
+<b>Example Convo</b>, note that you will need to use actual phone numbers in E.164 format such as +13231234567. Also when going from Personal # -> Twilio# your text back should start with the number of the person you want to text/customer:
+Customer# -> Twilio#: Hello I am looking for a quote on a new kitchen
+Twilio# -> Personal#: Customer#:"Hello I am looking for a quote on a new"
+Personal# -> Twilio#: Customer# Yes I can go ahead and schedule an estimate this week. 
+<br>
+
+You will need to have a twilio account and a phone number purchased. See deployment section to see how to purchase a Twilio number<br><br>
+
+---
+## Table of Contents
+* [Structure](#Structure) 
+* [Getting Started](#getting-started)
+  * [Deploy](#deploy)
+* [Notes](#notes)
+  * [Resources](#resources)
+* [TO-DO](#todo)
+<br><br>
+
+---
+## Structure
+* config_sample.py : <b><i>rename file as config.py and replace the credentials with your information </b></i> to use, all the other scripts rely on the credentials from this
+* test_sms.py : Testing out sending a text messages through twilio to myself, the first step in getting this going
+* text_proxy_server.py : a server that will forward text back and forth between customers and my personal number so I dont have to give out my personal number. 
+* update_ip.py : a script to update the ip address of the server in case it changes
+* sms_conversation.py : A script to create conversations between two numbers, requires a server with twilio-cli installed source [Twilio Docs](https://www.twilio.com/docs/conversations/quickstart) 
+<br><br>
+
+---
+## Getting Started
+
+Sign up for a twilio account. Photo below shows how to [purchase a phone number](https://www.twilio.com/console/phone-numbers/search) in twilio
+![](./pics/buy-number.gif)
+
+Replace the items in config_sample.py with your information, the private number will be your personal phone number/cell phone <b> make sure to rename the file to config.py</b>. 
 ```
 twilio_sid = 'XXXXXXXXXXXXX'
 twilio_token = 'XXXXXXXXXXXX'
@@ -10,14 +43,29 @@ PRIVATE_NUMBER = "+13231113118"
 ```
 
 
+### Deploy 
+Create virtual environment, install dependencies, and Ngrok. Ngrok will expose localhost port 5000 to incoming requests, it will provide us with a html that we can use in Twilio. 
+```
+virtualenv venv
+pip install -r requirements.txt
+sudo snap install ngrok #install ngrok on linux
+ngrok http 5000 #start ngrok to expose port 5000
+```
+
+Below is a photo of how your phone numbers webhook should look like for texting. [Click your number to check the webhooks](https://www.twilio.com/console/phone-numbers/incoming)
+![](./pics/webhook-setup.png)
+
+Now you can run the text_proxy_server.py
+
+
+---
+## Notes
+Notes
 
 [Messages api](https://www.twilio.com/docs/sms/api/message-resource#create-a-message-resource) show how to create, fetch, delete, or update a message
 
 
-![](media.gif)
-
----
-## Resources for Conversations
+### Resources for Conversations
 Creating [Conversation](https://www.twilio.com/docs/conversations/quickstart?code-sample=code-create-your-first-conversation&code-language=Node.js&code-sdk-version=3.x) and [Creating WhatsApp Conversations](https://www.twilio.com/docs/conversations/using-whatsapp-conversations)
 
 
@@ -32,22 +80,15 @@ Paste into ConversationApp.js in sandbox
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzA5YWM1NzVjYWFhOTM4MDhkYTMyZTg4YmI2ZmUwNzJjLTE2MjAyNTgzNDYiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJ0ZXN0UGluZSIsImNoYXQiOnsic2VydmljZV9zaWQiOiJJU2U3NjJiYTk3MzdjNjQzYzc5OTNmNjAyODQ3ZWJlMmQ2In19LCJpYXQiOjE2MjAyNTgzNDYsImV4cCI6MTYyMDI2MTk0NiwiaXNzIjoiU0swOWFjNTc1Y2FhYTkzODA4ZGEzMmU4OGJiNmZlMDcyYyIsInN1YiI6IkFDMjhkMGM0MmQzMGY2YzJiYTE1YzA5NGQyZDZiYjMwMTUifQ.jhQPnYhIRs2cXDbcixBF0NeeImflx1VZa_msVSNFLcY
 ```
 
----
-## Creating a phone number proxy
+### Creating a phone number proxy
 Resources:
 * [Phone number proxy script](https://www.twilio.com/blog/2018/02/phone-number-forward-mask-python-flask.html)
 * [Github phone number proxy](https://github.com/npentrel/twilio-ghost)
 
-Script is named ----
-
 ---
-### Notes
-Notes
-
-
----
-### Todo
-* Setup cron job to run update ip script
+## Todo
+There is a lot that can be added to the functionality of these scripts such as automating responses and 
+* [ ] Setup cron job to run update ip script (don't need to do this now that i'm using aws)
 * [x] Setup Twilio CLI on server to process text messages and conversations on server. [Twilio CLI](https://www.twilio.com/docs/twilio-cli/quickstart)
   * [x] Create a WhatsApp business account for 1(323)622-4366
     * [ ] [autopilot whatsapp](https://www.twilio.com/docs/autopilot/channels/whatsapp) and [WhatsApp Senders](https://www.twilio.com/console/sms/whatsapp/senders) and [autopilot all](https://www.twilio.com/docs/autopilot/channels) 

@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 # environment variables for the scripts
 from config import twilio_sid, twilio_token, PRIVATE_NUMBER, TWILIO_NUMBER
-# Depreceated storing variables in dotenv, using config file for env variables
+# Depreceated storing variables in dotenv, using config.py file for env variables
 """  
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
@@ -65,13 +65,13 @@ def chat_in_conversation(conversation_sid):
         .create(identity='testPine')
     print(participant.sid)
 
-
-# fetch_messages()
-# start_conversation()
-conversation_sid = 'CHa58ccfd9e9a148cd91b32b2989f97bf9'  # from start_conversation
-conversation_service = 'ISe762ba9737c643c7993f602847ebe2d6'  # from fetch_conversation
-# fetch_conversation(conversation_sid)
-# from add_conversation and chat_in_conversation
-participant_sid = 'MB980856734004444b81b3ea640953d9e4'
-# add_conversation(conversation_sid)
-chat_in_conversation(conversation_sid)
+if __name__ == '__main__':
+    # fetch_messages()
+    # start_conversation()
+    conversation_sid = 'CHa58ccfd9e9a148cd91b32b2989f97bf9'  # from start_conversation
+    conversation_service = 'ISe762ba9737c643c7993f602847ebe2d6'  # from fetch_conversation
+    # fetch_conversation(conversation_sid)
+    # from add_conversation and chat_in_conversation
+    participant_sid = 'MB980856734004444b81b3ea640953d9e4'
+    # add_conversation(conversation_sid)
+    chat_in_conversation(conversation_sid)
