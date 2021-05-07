@@ -5,6 +5,9 @@ from twilio.twiml.messaging_response import Message, MessagingResponse
 from config import PRIVATE_NUMBER, TWILIO_NUMBER
 
 
+app = Flask(__name__)
+
+
 def encode_message(msg, number):
     return "{}: {}".format(number, msg)
 
@@ -23,12 +26,9 @@ def send_message(msg, number):
     return str(response)
 
 
-app = Flask(__name__)
-
-
 @app.route('/sms', methods=['POST'])
 def sms():
-    """ if From number is equal to private number send to  """
+    """ if From number is equal to private number send to number in body. Else it forwards message to private number """
     from_number = request.form['From']
     msg_body = request.form['Body']
     print(from_number, '\n', msg_body)
