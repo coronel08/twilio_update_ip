@@ -6,11 +6,12 @@ Use Cases:
 * A burner phone number for drug transactions and darkweb at only $1 a month
 * A seperate number from your personal phone number (my case)
 
+
 <b>Example Convo</b>, note that you will need to use actual phone numbers in E.164 format such as +13231234567. Also when going from Personal # -> Twilio# your text back should start with the number of the person you want to text/customer:
 <br>📱↔️👻↔️📱<br>
-Customer# -> Twilio#: Hello I am looking for a quote on a new kitchen <br>
-Twilio# -> Personal#: Customer#:"Hello I am looking for a quote on a new" <br>
-Personal# -> Twilio#: Customer# Yes I can go ahead and schedule an estimate this week. <br><br>
+<b>Customer# -> Twilio#</b>: Hello I am looking for a quote on a new kitchen <br>
+<b>Twilio# -> Personal</b>#: Customer#:"Hello I am looking for a quote on a new" <br>
+<b>Personal# -> Twilio#</b>: Customer# Yes I can go ahead and schedule an estimate this week. <br><br>
 
 You will need to have a twilio account, a phone number purchased, python, ngrok(a reverse proxy that creates a secure tunell from a public endpoint), and some elbow grease. See deployment section to see how to purchase a Twilio number and get going. <br><br>
 
@@ -103,4 +104,4 @@ There is a lot that can be added to the functionality of these scripts such as a
 * [x] Create a FB business manager account [FB Business](https://business.facebook.com/overview)
   * [ ] Learn and use WHatsApp Business and learn [WhatsApp API](https://www.twilio.com/docs/whatsapp/api)
 * [x] Update file names, clean up folder, update README.
-* [ ] Setup recording and voice transcription of incoming calls
+* [x] Setup recording and voice transcription of incoming calls
