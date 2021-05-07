@@ -37,7 +37,7 @@ You will need to have a twilio account, a phone number purchased, python, ngrok(
 ---
 ## Getting Started
 
-Sign up for a twilio account. Photo below shows how to [purchase a phone number](https://www.twilio.com/console/phone-numbers/search) in twilio
+Sign up for a twilio account, [use my affiliate link to sign up and get $10](www.twilio.com/referral/T0noIv). Photo below shows how to [purchase a phone number](https://www.twilio.com/console/phone-numbers/search) in twilio
 ![](./pics/buy-number.gif)
 
 Replace the items in config_sample.py with your information, the private number will be your personal phone number/cell phone <b> make sure to rename the file to config.py</b>. 
@@ -93,7 +93,9 @@ Resources:
 ---
 ## Todo
 There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
+* [ ] Add in browser calling [FLask Javascript in Browser Calling](https://www.twilio.com/blog/make-receive-phone-calls-browser-twilio-programmable-voice-python-javascript)
 * [ ] Upload to AWS
+* [ ] Add video with text chat [React Video Chat Twilio](https://www.twilio.com/blog/open-source-video-chat-app-reactjs-conversations-api)
 * [ ] Code out a only during work hours kind of thing 
 * [ ] Automate Response for keywords
 * [ ] Route several numbers, looki into using a dict for phone numbers.
@@ -105,3 +107,9 @@ There is a lot that can be added to the functionality of these scripts such as a
   * [ ] Learn and use WHatsApp Business and learn [WhatsApp API](https://www.twilio.com/docs/whatsapp/api)
 * [x] Update file names, clean up folder, update README.
 * [x] Setup recording and voice transcription of incoming calls
+
+
+* [] Email Support about Conversations
+```
+Rather than keeping the WhatsApp room separate from the chat or SMS rooms, Conversations brings it together, automatically proxying conversations between participants. Whether it’s a customer care scenario where agents and employees field inquiries over webchat, while consumers respond over SMS or WhatsApp, in-app chat, or a large online conversation paired with a video event (perhaps built within minutes with our Open Source ReactJS app), every participant can choose their preferred channel. 
+```

@@ -7,7 +7,6 @@ idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-ngrok==0.0.1
 pycodestyle==2.7.0
 PyJWT==1.7.1
 pyngrok==5.0.5
