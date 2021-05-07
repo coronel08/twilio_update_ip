@@ -1,4 +1,4 @@
-# Twilio Scripts
+# Twilio Scripts and Proxy NUmber 📱↔️👻↔️📱
 A couple of python scripts to interact with Twilio. This was devised so that I dont have to get business calls clogging my personal phone. The text_proxy_server.py script will run a server that will receive text on a twilio phone number. Inbound text will be routed to a personal phone number and your reply back will be routed to look as if came from the twilio number. <br><br>
 
 Use Cases:
@@ -7,12 +7,12 @@ Use Cases:
 * A seperate number from your personal phone number (my case)
 
 <b>Example Convo</b>, note that you will need to use actual phone numbers in E.164 format such as +13231234567. Also when going from Personal # -> Twilio# your text back should start with the number of the person you want to text/customer:
-Customer# -> Twilio#: Hello I am looking for a quote on a new kitchen
-Twilio# -> Personal#: Customer#:"Hello I am looking for a quote on a new"
-Personal# -> Twilio#: Customer# Yes I can go ahead and schedule an estimate this week. 
-<br>
+<br>📱↔️👻↔️📱<br>
+Customer# -> Twilio#: Hello I am looking for a quote on a new kitchen <br>
+Twilio# -> Personal#: Customer#:"Hello I am looking for a quote on a new" <br>
+Personal# -> Twilio#: Customer# Yes I can go ahead and schedule an estimate this week. <br><br>
 
-You will need to have a twilio account, a phone number purchased, and some elbow grease. See deployment section to see how to purchase a Twilio number and get going. <br><br>
+You will need to have a twilio account, a phone number purchased, python, ngrok(a reverse proxy that creates a secure tunell from a public endpoint), and some elbow grease. See deployment section to see how to purchase a Twilio number and get going. <br><br>
 
 ---
 ## Table of Contents
@@ -87,12 +87,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJT
 
 ### Creating a phone number proxy
 Resources:
-* [Phone number proxy script](https://www.twilio.com/blog/2018/02/phone-number-forward-mask-python-flask.html)
-* [Github phone number proxy](https://github.com/npentrel/twilio-ghost)
-
+* [Phone number proxy script flask](https://www.twilio.com/blog/2018/02/phone-number-forward-mask-python-flask.html) and [Github repo](https://github.com/npentrel/twilio-ghost)
+* [Record phone calls flask](https://www.twilio.com/blog/transcribe-voice-message-twilio-python-flask)
 ---
 ## Todo
 There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
+* [ ] Upload to AWS
 * [ ] Code out a only during work hours kind of thing 
 * [ ] Automate Response for keywords
 * [ ] Route several numbers, looki into using a dict for phone numbers.
@@ -102,4 +102,5 @@ There is a lot that can be added to the functionality of these scripts such as a
     * [ ] [autopilot whatsapp](https://www.twilio.com/docs/autopilot/channels/whatsapp) and [WhatsApp Senders](https://www.twilio.com/console/sms/whatsapp/senders) and [autopilot all](https://www.twilio.com/docs/autopilot/channels) 
 * [x] Create a FB business manager account [FB Business](https://business.facebook.com/overview)
   * [ ] Learn and use WHatsApp Business and learn [WhatsApp API](https://www.twilio.com/docs/whatsapp/api)
-* [ ] Update file names, clean up folder, update README.
+* [x] Update file names, clean up folder, update README.
+* [ ] Setup recording and voice transcription of incoming calls

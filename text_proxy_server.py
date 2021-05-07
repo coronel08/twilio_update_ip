@@ -1,13 +1,16 @@
 import re
 from flask import Flask, request
+from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
 from twilio.twiml.messaging_response import Message, MessagingResponse
-from config import PRIVATE_NUMBER, TWILIO_NUMBER
+from config import PRIVATE_NUMBER, TWILIO_NUMBER, twilio_sid, twilio_token
 
 
 app = Flask(__name__)
+client = Client(twilio_sid, twilio_token)
 
 
+# Route and functions for text proxy, handling incoming text and outgoing text from a twilio number
 @app.route('/sms', methods=['POST'])
 def sms():
     """ 
@@ -44,6 +47,29 @@ def send_message(msg, number):
     response = MessagingResponse()
     response.message(msg, to=number, from_=TWILIO_NUMBER)
     return str(response)
+
+
+# Route and functions for recording calls coming in
+@app.route("/record", methods=['POST'])
+def record():
+    """ Record messages coming in """
+    response = VoiceResponse()
+    if 'RecordingSid' not in request.form:
+        response.say("Hello, please leave your message ")
+        # access thru twilio api https://www.twilio.com/docs/voice/api/recording-transcription
+        response.record(transcribe=True)
+    else:
+        print("Hanging up")
+        response.hangup()
+    return str(response)
+
+
+def message():
+    transcription = client.transcriptions.list(limit=1)
+    sid = transcription[0].sid
+    t = client.transcriptions(sid).fetch()
+    print(t.transcription_text)
+    return str(sid)
 
 
 if __name__ == '__main__':
