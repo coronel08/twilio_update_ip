@@ -1,13 +1,18 @@
 # Twilio Scripts
 A couple of python scripts to interact with Twilio. This was devised so that I dont have to get business calls clogging my personal phone. The text_proxy_server.py script will run a server that will receive text on a twilio phone number. Inbound text will be routed to a personal phone number and your reply back will be routed to look as if came from the twilio number. <br><br>
 
+Use Cases:
+* Temporary or International numbers 
+* A burner phone number for drug transactions and darkweb at only $1 a month
+* A seperate number from your personal phone number (my case)
+
 <b>Example Convo</b>, note that you will need to use actual phone numbers in E.164 format such as +13231234567. Also when going from Personal # -> Twilio# your text back should start with the number of the person you want to text/customer:
 Customer# -> Twilio#: Hello I am looking for a quote on a new kitchen
 Twilio# -> Personal#: Customer#:"Hello I am looking for a quote on a new"
 Personal# -> Twilio#: Customer# Yes I can go ahead and schedule an estimate this week. 
 <br>
 
-You will need to have a twilio account and a phone number purchased. See deployment section to see how to purchase a Twilio number<br><br>
+You will need to have a twilio account, a phone number purchased, and some elbow grease. See deployment section to see how to purchase a Twilio number and get going. <br><br>
 
 ---
 ## Table of Contents
@@ -48,7 +53,7 @@ Create virtual environment, install dependencies, and Ngrok. Ngrok will expose l
 ```
 virtualenv venv
 pip install -r requirements.txt
-sudo snap install ngrok #install ngrok on linux
+sudo snap install ngrok #install ngrok on linux, if not in linux google how to install ngrok
 ngrok http 5000 #start ngrok to expose port 5000
 ```
 
@@ -87,7 +92,10 @@ Resources:
 
 ---
 ## Todo
-There is a lot that can be added to the functionality of these scripts such as automating responses and 
+There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
+* [ ] Code out a only during work hours kind of thing 
+* [ ] Automate Response for keywords
+* [ ] Route several numbers, looki into using a dict for phone numbers.
 * [ ] Setup cron job to run update ip script (don't need to do this now that i'm using aws)
 * [x] Setup Twilio CLI on server to process text messages and conversations on server. [Twilio CLI](https://www.twilio.com/docs/twilio-cli/quickstart)
   * [x] Create a WhatsApp business account for 1(323)622-4366
