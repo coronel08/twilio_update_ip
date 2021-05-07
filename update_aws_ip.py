@@ -1,10 +1,10 @@
 #!/path/to/your/venv/bin/python
+# Followed instructions below
+# https://www.twilio.com/blog/build-voip-system-twilio-3cx-python
+
 import os
 import requests
 from twilio.rest import Client
-
-# Followed instructions below
-# https://www.twilio.com/blog/build-voip-system-twilio-3cx-python
 
 
 # Environment Variables, figure out ACL_NAME
@@ -35,6 +35,7 @@ def ip_needs_update():
     if old_ip != current_ip:
         store_ip(current_ip)
         return True
+
 
 def find_acl(client, name=ACL_NAME):
     for auth in client.sip.ip_access_control_lists.stream():
