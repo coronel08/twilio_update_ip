@@ -38,7 +38,7 @@ You will need to have a twilio account, a phone number purchased, python, ngrok(
 ## Getting Started
 
 Sign up for a twilio account, [use my affiliate link to sign up and get $10](www.twilio.com/referral/T0noIv). Photo below shows how to [purchase a phone number](https://www.twilio.com/console/phone-numbers/search) in twilio
-![](./pics/buy-number.gif)
+![](./static/images/buy-number.gif)
 
 Replace the items in config_sample.py with your information, the private number will be your personal phone number/cell phone <b> make sure to rename the file to config.py</b>. 
 ```
@@ -48,6 +48,11 @@ TWILIO_NUMBER = "+13236211111"
 PRIVATE_NUMBER = "+13231113118"
 ```
 
+Note that flask is for production for deployment use either gunicorn or uWSGI installed thru pip
+```
+pip install gunicorn
+gunicorn -b :5000 text_proxy_server:app #b flag = binds
+```
 
 ### Deploy 
 Create virtual environment, install dependencies, and Ngrok. Ngrok will expose localhost port 5000 to incoming requests, it will provide us with a html that we can use in Twilio. 
@@ -59,7 +64,7 @@ ngrok http 5000 #start ngrok to expose port 5000
 ```
 
 Below is a photo of how your phone numbers webhook should look like for texting. [Click your number to check the webhooks](https://www.twilio.com/console/phone-numbers/incoming)
-![](./pics/webhook-setup.png)
+![](./static/images/webhook-setup.png)
 
 Now you can run the text_proxy_server.py
 
@@ -97,6 +102,7 @@ There is a lot that can be added to the functionality of these scripts such as a
 * [x] Build a chatbot with Whatsapp[Flask chatbot ](https://www.twilio.com/blog/build-a-whatsapp-chatbot-with-python-flask-and-twilio)
   * [ ] Test chatbot
   * [ ] Integrate later with proxy reply back
+  * [ ] ToDo[Add machine learning Chatterbot](https://github.com/gunthercox/ChatterBot)
 * [ ] Upload to AWS
 * [ ] Add video with text chat [React Video Chat Twilio](https://www.twilio.com/blog/open-source-video-chat-app-reactjs-conversations-api)
 * [ ] Code out a only during work hours kind of thing 

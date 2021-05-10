@@ -1,10 +1,15 @@
 import re
 import requests
-from flask import Flask, request
+from flask import Flask, request, render_template, jsonify
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
 from twilio.twiml.messaging_response import Message, MessagingResponse
-from config import PRIVATE_NUMBER, TWILIO_NUMBER, twilio_sid, twilio_token
+from config import PRIVATE_NUMBER, TWILIO_NUMBER, twilio_sid, twilio_token, twilio_api, api_key
+# Browser Calling dependencies
+from twilio.jwt.access_token import AccessToken
+from twilio.jwt.access_token.grants import VoiceGrant
+from twilio.twiml.voice_response import VoiceResponse, Dial
+from pprint import pprint
 
 
 app = Flask(__name__)
@@ -96,6 +101,44 @@ def bot():
     elif not responded:
         msg.body('Send a quotes or cats in body, sorry')
     return str(resp)
+
+
+# Route and functions for browser dialing
+@app.route('/', methods=['GET'])
+def home():
+    """ serving the UI """
+    return render_template(
+        'home.html',
+        title='In browser calls',
+    )
+
+@app.route('/token', methods=['GET'])
+def get_token():
+    """ Generating and returning access tokens to the client using config.py credentials """
+    identity = TWILIO_NUMBER
+    outgoing_application_sid = twilio_api
+    access_token = AccessToken(
+        twilio_sid, twilio_token, api_key, identity=identity)
+    voice_grant = VoiceGrant(
+        outgoing_application_sid=outgoing_application_sid, incoming_allow=True)
+    access_token.add_grant(voice_grant)
+    response = jsonify(
+        {'token': access_token.to_jwt().decode(), 'identity': identity})
+    return response
+
+
+@app.route('/handle_calls', methods=['POST'])
+def call():
+    """ Instructions for making and receiving calls """
+    pprint(request.form)
+    response = VoiceResponse()
+    dial = Dial(callerId=TWILIO_NUMBER)
+
+    if 'To' in request.form and request.form['To'] != TWILIO_NUMBER:
+        print('outbound call')
+        dial.number(request.form['To'])
+        return str(response.append(dial))
+    return ''
 
 if __name__ == '__main__':
     app.run()
