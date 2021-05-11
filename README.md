@@ -75,6 +75,7 @@ Notes
 
 [Messages api](https://www.twilio.com/docs/sms/api/message-resource#create-a-message-resource) show how to create, fetch, delete, or update a message
 
+Can also use Twilio API to play,dial, enqueue,gather,record or reject a call. 
 
 ### Resources for Conversations
 Creating [Conversation](https://www.twilio.com/docs/conversations/quickstart?code-sample=code-create-your-first-conversation&code-language=Node.js&code-sdk-version=3.x) and [Creating WhatsApp Conversations](https://www.twilio.com/docs/conversations/using-whatsapp-conversations)
@@ -98,6 +99,7 @@ Resources:
 ---
 ## Todo
 There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
+* [ ] Test Out message routing using Python Dictionary for numbers
 * [ ] Add in browser calling [FLask Javascript in Browser Calling](https://www.twilio.com/blog/make-receive-phone-calls-browser-twilio-programmable-voice-python-javascript)
 * [x] Build a chatbot with Whatsapp[Flask chatbot ](https://www.twilio.com/blog/build-a-whatsapp-chatbot-with-python-flask-and-twilio)
   * [ ] Test chatbot
