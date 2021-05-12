@@ -11,6 +11,18 @@ app = Flask(__name__)
 client = Client(TWILIO_SID, TWILIO_TOKEN)
 
 
+@app.route('/sms', methods=['POST'])
+def sms():
+    """ 
+    If from_number is equal to PRIVATE_NUMBER, it sends the message to the number specified in the msg. 
+    Else it forwards a message with the originating number and msg body to the PRIVATE_NUMBER 
+    """
+    from_number = request.form['From']
+    to_number = request.form['To']
+    msg_body = request.form['Body']
+    print(from_number, to_number, '\n', msg_body)
+
+
 # Route and functions for text proxy, handling incoming text and outgoing text from a twilio number
 @app.route('/sms', methods=['POST'])
 def sms():
@@ -22,15 +34,14 @@ def sms():
     msg_body = request.form['Body']
     print(from_number, '\n', msg_body)
     # if from_number in NUMBERS.values:
-    #     # If number in dict, send message to the to number 
+    #     # If number in dict, send message to the to number
     #     msg, to_number = decode_message(msg_body)
     #     return send_message(msg, to_number)
     # else:
-    #     # if number texting is not in dict, 
+    #     # if number texting is not in dict,
     #     get_key(from_number)
     #     msg = encode_message(msg_body, from_number)
     #     return send_message(msg, PRIVATE_NUMBER)
-
 
     # redo if statement
     if from_number == NUMBERS['PRIVATE_NUMBER']:
@@ -40,21 +51,26 @@ def sms():
     elif from_number == NUMBERS['MOM']:
         # Text from moms phone comes out as 424 num
         msg, to_number = decode_message(msg_body)
-        return send_message(msg, to_number,from_=NUMBERS['SECOND_NUMBER'])
+        return send_message(msg, to_number, from_=NUMBERS['SECOND_NUMBER'])
+    elif to_number == NUMBERS['SECOND_NUMBER']:
+        # Test to see if this function works when my mom gets home
+        msg = encode_message(msg_body, from_number)
+        return send_message(msg, NUMBERS['MOM'], from_=NUMBERS['SECOND_NUMBER'])
     else:
         # Both 424 and 323 numbers route to my cell need to fix.
         msg = encode_message(msg_body, from_number)
-        return send_message(msg,NUMBERS['PRIVATE_NUMBER'],from_=NUMBERS['SECOND_NUMBER'])
-    
+        return send_message(msg, NUMBERS['PRIVATE_NUMBER'])
+
 
 def get_key(val, dict_name):
     """ 
     Function to return the key from a value in the dictionary
     https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/
     """
-    for key,value in dict_name.items():
+    for key, value in dict_name.items():
         if val == value:
             return key
+
 
 def encode_message(msg, number):
     """If number is not from PRIVATE_NUMBER it creates a message with the originating number and the msg, then forwards it to the PRIVATE_NUMBER """
