@@ -100,7 +100,6 @@ Resources:
 ## Todo
 There is a lot that can be added to the functionality of these scripts such as automating responses or anything you can think of
 * [ ] Test Out message routing using Python Dictionary for numbers
-* [ ] Add in browser calling [FLask Javascript in Browser Calling](https://www.twilio.com/blog/make-receive-phone-calls-browser-twilio-programmable-voice-python-javascript)
 * [x] Build a chatbot with Whatsapp[Flask chatbot ](https://www.twilio.com/blog/build-a-whatsapp-chatbot-with-python-flask-and-twilio)
   * [ ] Test chatbot
   * [ ] Integrate later with proxy reply back
@@ -109,8 +108,6 @@ There is a lot that can be added to the functionality of these scripts such as a
 * [ ] Add video with text chat [React Video Chat Twilio](https://www.twilio.com/blog/open-source-video-chat-app-reactjs-conversations-api)
 * [ ] Code out a only during work hours kind of thing 
 * [ ] Automate Response for keywords
-* [ ] Route several numbers, looki into using a dict for phone numbers.
-* [ ] Setup cron job to run update ip script (don't need to do this now that i'm using aws)
 * [x] Setup Twilio CLI on server to process text messages and conversations on server. [Twilio CLI](https://www.twilio.com/docs/twilio-cli/quickstart)
   * [x] Create a WhatsApp business account for 1(323)622-4366
     * [ ] [autopilot whatsapp](https://www.twilio.com/docs/autopilot/channels/whatsapp) and [WhatsApp Senders](https://www.twilio.com/console/sms/whatsapp/senders) and [autopilot all](https://www.twilio.com/docs/autopilot/channels) 
