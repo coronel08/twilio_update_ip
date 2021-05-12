@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, jsonify
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
 from twilio.twiml.messaging_response import Message, MessagingResponse
-from config import PRIVATE_NUMBER, TWILIO_NUMBER, TWILIO_SID, TWILIO_TOKEN, TWILIO_API, API_KEY, TWIML_APP_SID
+from config import NUMBERS, TWILIO_SID, TWILIO_TOKEN, TWILIO_API, API_KEY, TWIML_APP_SID
 
 
 app = Flask(__name__)
@@ -21,14 +21,40 @@ def sms():
     from_number = request.form['From']
     msg_body = request.form['Body']
     print(from_number, '\n', msg_body)
+    # if from_number in NUMBERS.values:
+    #     # If number in dict, send message to the to number 
+    #     msg, to_number = decode_message(msg_body)
+    #     return send_message(msg, to_number)
+    # else:
+    #     # if number texting is not in dict, 
+    #     get_key(from_number)
+    #     msg = encode_message(msg_body, from_number)
+    #     return send_message(msg, PRIVATE_NUMBER)
 
-    if from_number == PRIVATE_NUMBER:
+
+    # redo if statement
+    if from_number == NUMBERS['PRIVATE_NUMBER']:
+        # Text from my phone come out as 323 num
         msg, to_number = decode_message(msg_body)
         return send_message(msg, to_number)
+    elif from_number == NUMBERS['MOM']:
+        # Text from moms phone comes out as 424 num
+        msg, to_number = decode_message(msg_body)
+        return send_message(msg, to_number,from_=NUMBERS['SECOND_NUMBER'])
     else:
+        # Both 424 and 323 numbers route to my cell need to fix.
         msg = encode_message(msg_body, from_number)
-        return send_message(msg, PRIVATE_NUMBER)
+        return send_message(msg,NUMBERS['PRIVATE_NUMBER'],from_=NUMBERS['SECOND_NUMBER'])
+    
 
+def get_key(val, dict_name):
+    """ 
+    Function to return the key from a value in the dictionary
+    https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/
+    """
+    for key,value in dict_name.items():
+        if val == value:
+            return key
 
 def encode_message(msg, number):
     """If number is not from PRIVATE_NUMBER it creates a message with the originating number and the msg, then forwards it to the PRIVATE_NUMBER """
@@ -43,10 +69,10 @@ def decode_message(msg):
     return body, number
 
 
-def send_message(msg, number):
+def send_message(msg, number, from_=NUMBERS['TWILIO_NUMBER']):
     """ Sends message from TWILIO_NUMBER to number passed in """
     response = MessagingResponse()
-    response.message(msg, to=number, from_=TWILIO_NUMBER)
+    response.message(msg, to=number, from_=from_)
     return str(response)
 
 
