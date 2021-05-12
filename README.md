@@ -63,6 +63,15 @@ sudo snap install ngrok #install ngrok on linux, if not in linux google how to i
 ngrok http 5000 #start ngrok to expose port 5000
 ```
 
+Ngrok will create a link that exposes the localhost port. Do note that this linkchanges everytime you run Ngrok, this url will be sometihng like
+```
+http://d9249e966e30.ngrok.io
+```
+We can then take this link and add it to our twilio account to make a connection to the server. Our link will look like this
+```
+http://d9249e966e30.ngrok.io/sms
+```
+
 Below is a photo of how your phone numbers webhook should look like for texting. [Click your number to check the webhooks](https://www.twilio.com/console/phone-numbers/incoming)
 ![](./static/images/webhook-setup.png)
 
