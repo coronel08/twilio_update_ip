@@ -61,6 +61,7 @@ virtualenv venv
 pip install -r requirements.txt
 sudo snap install ngrok #install ngrok on linux, if not in linux google how to install ngrok
 ngrok http 5000 #start ngrok to expose port 5000
+python text_proxy_server
 ```
 
 Ngrok will create a link that exposes the localhost port. Do note that this linkchanges everytime you run Ngrok, this url will be sometihng like

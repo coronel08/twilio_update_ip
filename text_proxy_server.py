@@ -11,18 +11,6 @@ app = Flask(__name__)
 client = Client(TWILIO_SID, TWILIO_TOKEN)
 
 
-@app.route('/sms', methods=['POST'])
-def sms():
-    """ 
-    If from_number is equal to PRIVATE_NUMBER, it sends the message to the number specified in the msg. 
-    Else it forwards a message with the originating number and msg body to the PRIVATE_NUMBER 
-    """
-    from_number = request.form['From']
-    to_number = request.form['To']
-    msg_body = request.form['Body']
-    print(from_number, to_number, '\n', msg_body)
-
-
 # Route and functions for text proxy, handling incoming text and outgoing text from a twilio number
 @app.route('/sms', methods=['POST'])
 def sms():
@@ -31,6 +19,7 @@ def sms():
     Else it forwards a message with the originating number and msg body to the PRIVATE_NUMBER 
     """
     from_number = request.form['From']
+    to_number = request.form['To']
     msg_body = request.form['Body']
     print(from_number, '\n', msg_body)
     # if from_number in NUMBERS.values:
