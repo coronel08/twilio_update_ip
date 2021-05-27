@@ -22,17 +22,7 @@ def sms():
     to_number = request.form['To']
     msg_body = request.form['Body']
     print(from_number, '\n', msg_body)
-    # if from_number in NUMBERS.values:
-    #     # If number in dict, send message to the to number
-    #     msg, to_number = decode_message(msg_body)
-    #     return send_message(msg, to_number)
-    # else:
-    #     # if number texting is not in dict,
-    #     get_key(from_number)
-    #     msg = encode_message(msg_body, from_number)
-    #     return send_message(msg, PRIVATE_NUMBER)
 
-    # redo if statement
     if from_number == NUMBERS['PRIVATE_NUMBER']:
         # Text from my phone come out as 323 num
         msg, to_number = decode_message(msg_body)
@@ -42,11 +32,11 @@ def sms():
         msg, to_number = decode_message(msg_body)
         return send_message(msg, to_number, from_=NUMBERS['SECOND_NUMBER'])
     elif to_number == NUMBERS['SECOND_NUMBER']:
-        # Test to see if this function works when my mom gets home
+        # Text coming to Twilio Second Number, # forwards to Mom
         msg = encode_message(msg_body, from_number)
         return send_message(msg, NUMBERS['MOM'], from_=NUMBERS['SECOND_NUMBER'])
     else:
-        # Both 424 and 323 numbers route to my cell need to fix.
+        # Else forward all text to 323 numbers route.
         msg = encode_message(msg_body, from_number)
         return send_message(msg, NUMBERS['PRIVATE_NUMBER'])
 
