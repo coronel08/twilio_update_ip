@@ -1,15 +1,16 @@
 import re
 import requests
+import os
 from flask import Flask, request, render_template, jsonify
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, VoiceResponse
 from twilio.twiml.messaging_response import Message, MessagingResponse
 from config import NUMBERS, TWILIO_SID, TWILIO_TOKEN, TWILIO_API, API_KEY, TWIML_APP_SID
+from pyngrok import ngrok
 
 
 app = Flask(__name__)
 client = Client(TWILIO_SID, TWILIO_TOKEN)
-
 
 # Route and functions for text proxy, handling incoming text and outgoing text from a twilio number
 @app.route('/sms', methods=['POST'])
@@ -70,6 +71,10 @@ def send_message(msg, number, from_=NUMBERS['TWILIO_NUMBER']):
     response.message(msg, to=number, from_=from_)
     return str(response)
 
+# https://www.twilio.com/blog/automating-ngrok-python-twilio-applications-pyngrok
+def start_ngrok():
+    url = ngrok.connect(5000).public_url
+    print('* Tunnel URL:', url + '/sms')
 
 # Route and functions for recording calls coming in
 @app.route("/record", methods=['POST'])
@@ -120,4 +125,6 @@ def bot():
 
 
 if __name__ == '__main__':
+    if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
+        start_ngrok()
     app.run()
