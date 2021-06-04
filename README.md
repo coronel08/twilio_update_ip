@@ -79,6 +79,9 @@ Below is a photo of how your phone numbers webhook should look like for texting.
 Now you can run the text_proxy_server.py
 
 
+Deploy on AWS Cloud instance guide [Twilio Blog](https://www.twilio.com/blog/deploy-flask-python-app-aws)
+
+
 ---
 ## Notes
 Notes
