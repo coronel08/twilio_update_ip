@@ -12,6 +12,28 @@ from pyngrok import ngrok
 app = Flask(__name__)
 client = Client(TWILIO_SID, TWILIO_TOKEN)
 
+
+
+'''
+name_list = ["Fidel","Karina"]
+number_list = [323,714]
+text = "Mom text to someone out"
+
+for i, j in enumerate(name_list):
+    if j in text:
+        print(f"{i}:{j} in text, return number {number_list[i]}")
+    else:
+        pass
+
+
+
+#added twilio#, make a dict with two values zipped.
+twilio_list = [987,876]
+test = dict(zip(name_list,zip(number_list, twilio_list)))
+
+'''
+
+
 # Route and functions for text proxy, handling incoming text and outgoing text from a twilio number
 @app.route('/sms', methods=['POST'])
 def sms():
