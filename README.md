@@ -83,6 +83,24 @@ Deploy on AWS Cloud instance guide [Twilio Blog](https://www.twilio.com/blog/dep
 
 
 ---
+
+### 3cx and Twilio Setup
+[3cx Twilio Sip Trunking Docs](https://www.3cx.com/docs/twilio-elastic-sip-trunking/)
+[Twilio Sip Trunking Docs](https://www.twilio.com/docs/sip-trunking)
+* Create a sip trunk[Elastic Sip Trunking - Trunks](https://www.twilio.com/console/sip-trunking/trunks)
+  * Termination, create SIP URI, and add Authentication
+    * Add authentication credential[Sip Trunking - Authentication - Credential Lists](https://www.twilio.com/console/sip-trunking/authentication/cls/CL9e336353cead45d00bd9ad5331dc1e88) for user, has to be unique
+  * Origination, add origination SIP URI
+  * Numbers, add numbers
+* 3cx Section Note(twilio under worldwide provider)
+  * [Sip Trunks](https://coronel08.my3cx.us/#/app/siptrunks) and enter name for trunk, hostname, authentication, route calls to
+  * [Inbound Rules](https://coronel08.my3cx.us/#/app/inbound_rules)
+  * [Outbound Rules](https://coronel08.my3cx.us/#/app/outbound_rules) setup outbound rules
+#### Add a Number into the already up system
+* Twilio purchase a number [Elastic Sip Trunking - Numbers](https://www.twilio.com/console/sip-trunking/trunks/TK639f668458bdc538eda4843d7e7cb556/numbers)
+* Create credentials for numbers [Elastic Sip Trunking - Authentication - Credentials](https://www.twilio.com/console/sip-trunking/authentication/cls)
+* Follow 3cx section from above
+---
 ## Notes
 Notes
 
