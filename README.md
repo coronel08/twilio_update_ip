@@ -1,4 +1,8 @@
 # Twilio Scripts and Proxy NUmber 📱↔️👻↔️📱
+
+Need to change from ngrok to properly ported server using Guincorn
+[Host a flask application with Guincorn](https://www.e-tinkers.com/2018/08/how-to-properly-host-flask-application-with-nginx-and-guincorn/)
+
 A couple of python scripts to interact with Twilio. This was devised so that I dont have to get business calls clogging my personal phone. The text_proxy_server.py script will run a server that will receive text on a twilio phone number. Inbound text will be routed to a personal phone number and your reply back will be routed to look as if came from the twilio number. <br><br>
 
 Use Cases:
